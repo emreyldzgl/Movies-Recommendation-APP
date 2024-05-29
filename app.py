@@ -4,7 +4,7 @@ import pandas as pd
 
 from ContentBasedRecommendation import content_based_recommender, cosine
 
-df = pd.read_csv("dataset/imdb_top_1000.csv")
+df = pd.read_csv("dataset/imdb_top_1000_hd.csv")
 
 
 def get_img_as_base64(file):
@@ -74,8 +74,8 @@ with tab1:
     movies = col1.selectbox("The Movie You're Watching:", df["Series_Title"])
 
     # Seçilen filmin poster linkini al
-    selected_movie_poster = df[df["Series_Title"] == movies]["Poster_Link"].values[0]
-    col2.image(selected_movie_poster, width=70)
+    selected_movie_poster = df[df["Series_Title"] == movies]["Poster_LinkV2"].values[0]
+    col2.image(selected_movie_poster, width=100)
 
     count = st.slider("Number of Movies to Recommend:", min_value=0, max_value=10, step=1)
     st.markdown("""
@@ -93,10 +93,10 @@ with tab1:
         for idx, recommendation in enumerate(recommendations):
             col_idx = idx % num_columns
             with columns[col_idx]:
-                poster_link = df[df["Series_Title"] == recommendation]["Poster_Link"].values[0]
+                poster_link = df[df["Series_Title"] == recommendation]["Poster_LinkV2"].values[0]
                 IMDB = df[df["Series_Title"] == recommendation]["IMDB_Rating"].values[0]
                 with columns[col_idx]:
-                    st.image(poster_link, width=100)
+                    st.image(poster_link, width=150)
                     st.write(f"**Title:** {recommendation}" f"\n\n**Rating:** {IMDB}")
 with tab2:
 
@@ -106,8 +106,8 @@ with tab2:
     for idx, recommendation in enumerate(recommendations):
         col_idx = idx % num_columns
         with columns[col_idx]:
-            poster_link = df[df["Series_Title"] == recommendation]["Poster_Link"].values[0]
-            st.image(poster_link, width=120)
+            poster_link = df[df["Series_Title"] == recommendation]["Poster_LinkV2"].values[0]
+            st.image(poster_link, width=150)
 
             Director = df[df["Series_Title"] == recommendation]["Director"].values[0]
             Star1 = df[df["Series_Title"] == recommendation]["Star1"].values[0]

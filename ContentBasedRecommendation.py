@@ -6,7 +6,7 @@ pd.set_option('display.max_columns', None)
 pd.set_option('display.width', 500)
 pd.set_option('display.expand_frame_repr', False)
 
-df = pd.read_csv("dataset/imdb_top_1000.csv")
+df = pd.read_csv("dataset/imdb_top_1000_hd.csv")
 df.head()
 
 df["Overview"].head()
